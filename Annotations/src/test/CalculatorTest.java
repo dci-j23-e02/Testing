@@ -9,7 +9,12 @@ class CalculatorTest {
   @DisplayName("Add two numbers")
   void add() {
     System.out.println("**--- Test method add is executed ---**");
-    assertEquals(5, Calculator.add(3,2));
+    assertAll(
+        () -> assertEquals(5, Calculator.add(3,2)),
+        () -> assertEquals(1, Calculator.add(0,0)),
+        () -> assertEquals(4, Calculator.add(2,2)),
+        () -> assertEquals(2, Calculator.add(0,2))
+    );
   }
 
   @Test
