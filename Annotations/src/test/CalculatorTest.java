@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.AfterAll;
@@ -41,23 +42,43 @@ class CalculatorTest {
   @DisplayName("user name validation")
   void validateUsername() {
     Calculator c1 = new Calculator("Jan", "jan123@xmail.com");
-    assertEquals(false, c1.validateUsername());
+    assertEquals(false, c1.validateUsername(), "username length must be  greater than 6");
   }
 
   @Test
   void testAssertFalse(){
     Calculator c1 = new Calculator("Jan", "jan123@xmail.com");
-
-    // assertEquals(false, c1.validateUsername());
-
-    // Fails when expression is not false
-    // c1 username length is not greater than 6 :
-    assertFalse(c1.getUserName().length() > 6); // passed
-
     Calculator c2 = new Calculator("Terissa", "teri123@xmail.com");
+
+    assertAll(
+
+        // assertEquals(false, c1.validateUsername());
+
+        // Fails when expression is not false
+        // c1 username length   must be not less than 6 :
+        ()-> assertFalse(c1.getUserName().length() < 6, "Testing c1 assertFalse line 59 : username length   must be not less than 6"),// fail
+
+
     // c2 username length is not less than 6 :
-    assertFalse(c2.getUserName().length() < 6 ); // passed
+        ()-> assertFalse(c2.getUserName().length() < 6, "username length   must be not less than 6" ),// passed
+
+
+    // AssertTrue : Fails when the expression is not True
+    // c1 username length must be  greater than 6 :
+        ()-> assertTrue(c1.getUserName().length() > 6, "username length must be  greater than 6"), // fail
+
+
+
+    // c2 username length must be greater than 6 :
+        ()-> assertTrue(c2.getUserName().length() > 6 , "username length must be  greater than 6") // passed
+
+
+
+    );
+
   }
+
+  //@Test
 
 
   @AfterAll
