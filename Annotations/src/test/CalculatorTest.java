@@ -78,7 +78,16 @@ class CalculatorTest {
 
   }
 
-  //@Test
+@Test
+void testAssertNull(){
+    // AssetNull fail when the actual is not null
+  Calculator c1 = new Calculator("Jan");
+  Calculator c2 = new Calculator("Terissa", "teri123@xmail.com");
+  assertNull(c1.getEmailAddress(), "getEmailAddress must return null "); // pass
+  assertNull(c2.getEmailAddress(), "getEmailAddress must return null "); // fail
+}
+
+@Test
 
 
   @AfterAll

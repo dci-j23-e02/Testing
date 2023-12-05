@@ -9,6 +9,11 @@ public class Calculator {
     this.emailAddress = emailAddress;
   }
 
+  public Calculator(String userName) {
+    this.userName = userName;
+
+  }
+
 
   public String getUserName() {
     return userName;
