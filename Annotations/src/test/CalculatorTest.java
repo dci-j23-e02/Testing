@@ -10,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
+  private Calculator c1 = new Calculator("Jan");
+  private  Calculator c2 = new Calculator("Terissa", "teri123@xmail.com");
 
   @Test
   @DisplayName("Add two numbers")
@@ -88,7 +90,13 @@ void testAssertNull(){
 }
 
 @Test
-
+void testAssertNotNull(){
+  // AssetNotNull fail when the actual is null
+  Calculator c1 = new Calculator("Jan");
+  Calculator c2 = new Calculator("Terissa", "teri123@xmail.com");
+  assertNotNull(c1.getEmailAddress(), "c1 fail : getEmailAddress must not return null "); // fail
+  assertNotNull(c2.getEmailAddress(), "getEmailAddress must not return null "); // pass
+}
 
   @AfterAll
   static void done(){
