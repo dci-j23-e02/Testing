@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,7 +14,9 @@ class CalculatorTest {
   @DisplayName("Add two numbers")
   void add() {
     System.out.println("**--- Test method add is executed ---**");
+    // Group many assertions and every assertion is executed even if one or more of them fails
     assertAll(
+        // assertEquals Fails when expected does not match actual ( actual returned value by the method )
         () -> assertEquals(5, Calculator.add(3,2)),
         () -> assertEquals(1, Calculator.add(0,0)),
         () -> assertEquals(4, Calculator.add(2,2)),
@@ -32,6 +35,30 @@ class CalculatorTest {
         () -> assertEquals(0, Calculator.multiply(0,2))
     );
   }
+
+
+  @Test
+  @DisplayName("user name validation")
+  void validateUsername() {
+    Calculator c1 = new Calculator("Jan", "jan123@xmail.com");
+    assertEquals(false, c1.validateUsername());
+  }
+
+  @Test
+  void testAssertFalse(){
+    Calculator c1 = new Calculator("Jan", "jan123@xmail.com");
+
+    // assertEquals(false, c1.validateUsername());
+
+    // Fails when expression is not false
+    // c1 username length is not greater than 6 :
+    assertFalse(c1.getUserName().length() > 6); // passed
+
+    Calculator c2 = new Calculator("Terissa", "teri123@xmail.com");
+    // c2 username length is not less than 6 :
+    assertFalse(c2.getUserName().length() < 6 ); // passed
+  }
+
 
   @AfterAll
   static void done(){
@@ -52,4 +79,6 @@ class CalculatorTest {
   void tearDown(){
     System.out.println("cleaning up initialized data / instances after each test method");
   }
+
+
 }
