@@ -1,6 +1,9 @@
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assumptions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -97,6 +100,41 @@ void testAssertNotNull(){
   assertNotNull(c1.getEmailAddress(), "c1 fail : getEmailAddress must not return null "); // fail
   assertNotNull(c2.getEmailAddress(), "getEmailAddress must not return null "); // pass
 }
+
+  @Test
+  void testAssumeTrue(){
+    boolean assume = 'A' == 'A';
+    System.out.println(System.getProperty("os.name"));
+    assumeTrue(assume);
+    assertEquals("Hello", "Hello");
+  }
+
+  @Test
+  void testOnMac(){
+    assumeTrue(System.getProperty("os.name").equals("Mac OS X"));
+    assertEquals("Hello", "Hello");
+  }
+
+  @Test
+  void testNotOnWindows(){
+    assumeFalse(System.getProperty("os.name").equals("Windows"));
+    assertEquals("Hello", "Hello");
+  }
+
+
+
+  @Test
+  void testAssumingThat(){
+    // the test in the lambda expression will run either way , the assumption is true or false
+    System.setProperty("env", "prod");
+    assumingThat("test".equals(System.getProperty("env")),
+        () -> {
+          assertEquals("9", "10");
+          System.out.println("test performed assumingThat we are on test env");
+        }
+        );
+
+  }
 
   @AfterAll
   static void done(){
