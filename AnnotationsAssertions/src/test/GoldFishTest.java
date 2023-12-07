@@ -25,7 +25,7 @@ The methods that are referenced by `@MethodSource` must be static and
 * of the parameterized test.
 * */
 @MethodSource("provideFishes")
-  public void ageTest(GoldFish fish){
+   void ageTest(GoldFish fish){
  // assertEquals(1, fish.getAge());
   assertTrue(fish.getAge() >= 1);
 }
@@ -58,9 +58,11 @@ The `@ValueSource` annotation can provide arrays of simple literals for types
    *  test,  and the comma-separated values in each string will be the arguments for that invocation.
     * */
 
-  @CsvSource({"2, even", "3, odd"})
+  @CsvSource({"2, even" , "3, odd"})
   void checkEvenNumbers(int number, String expected){
-  int evenOrOdd = 0;
+
+  int evenOrOdd = -1;
+
     if(expected.equals("even") == true) {
       evenOrOdd = 0;
            }else{
@@ -71,7 +73,8 @@ The `@ValueSource` annotation can provide arrays of simple literals for types
   /*
   assertEquals(
       expected.equals("even") ? 0: 1, number % 2
-
+  assertEquals  (0 , 0 ) : passed
+   assertEquals (1 , 1 )  :  passed
   );*/
   }
 /**

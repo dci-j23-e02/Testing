@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
+
 
 class CalculatorTest {
   private Calculator c1 = new Calculator("Jan");
@@ -19,14 +19,14 @@ class CalculatorTest {
 
   @Test
   @DisplayName("Add two numbers")
-  void add() {
+  void testAdd() {
     System.out.println("**--- Test method add is executed ---**");
     // Group many assertions and every assertion is executed even if one or more of them fails
     assertAll(
         // assertEquals Fails when expected does not match actual ( actual returned value by the method )
-        () -> assertEquals(5, Calculator.add(3,2)),
+        () -> assertEquals(5, Calculator.add(3,2)), // passed
         () -> assertEquals(1, Calculator.add(0,0)),
-        () -> assertEquals(4, Calculator.add(2,2)),
+        () -> assertEquals(0, Calculator.add(-2,2)),
         () -> assertEquals(2, Calculator.add(0,2))
     );
   }
@@ -112,8 +112,10 @@ void testAssertNotNull(){
 
   @Test
   void testOnMac(){
-    assumeTrue(System.getProperty("os.name").equals("Mac OS X"));
+    assumeTrue(System.getProperty("os.name").equals("Windows")); // Mac OS X
     assertEquals("Hello", "Hello");
+
+
   }
 
   @Test
@@ -127,7 +129,8 @@ void testAssertNotNull(){
   @Test
   void testAssumingThat(){
     // the test in the lambda expression will run either way , the assumption is true or false
-    System.setProperty("env", "prod");
+    System.setProperty("env", "test");
+    //System.out.println(System.getProperty("env"));
     assumingThat("test".equals(System.getProperty("env")),
         () -> {
           assertEquals("9", "10");
@@ -137,7 +140,7 @@ void testAssertNotNull(){
 
   }
 
-  @ParameterizedTest
+
 
   @AfterAll
   static void done(){

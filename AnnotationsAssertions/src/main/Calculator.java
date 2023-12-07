@@ -56,9 +56,9 @@ public static double add(double x, double y){
 
 
   public static double multiplyMultiple(double... operands){
-    DoubleStream stream = DoubleStream.of(operands);
+  // DoubleStream stream = DoubleStream.of(operands);
 
-    double result = stream.reduce(1,(x,y)->x*y);
+   // double result = stream.reduce(1,(x,y)->x*y);
     /**
      * [8,5,2,6]
      * (identity:1 * 8)->8
@@ -66,8 +66,9 @@ public static double add(double x, double y){
      * (40*2) -> 80
      * (80*6) -> 480
      * */
-
-    return result ;
+    // return result;
+   // return stream.reduce(1,(x,y)->x*y);
+   return DoubleStream.of(operands).reduce(1,(x,y)->x*y);
   }
 
 

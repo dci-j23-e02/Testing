@@ -18,7 +18,9 @@ public class Main {
 
 
 
-    System.out.println( multiplyMultiple(8,5,2,6));
+   // System.out.println( multiplyMultiple(8,5,2,6));
+
+
 
   }
 
