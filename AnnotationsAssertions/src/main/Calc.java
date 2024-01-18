@@ -60,6 +60,7 @@ public class Calc {
     }
 
     // After processing all numbers, check if there were any negative numbers.
+
     if(negativeNumbers.length() > 0){
       throw  new IllegalArgumentException("negatives not allowed:["+negativeNumbers.toString()+"]");
     }
